@@ -22,8 +22,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class Frame1 {
 
@@ -36,7 +34,6 @@ public class Frame1 {
 	static JComboBox[] ComboBoxes = new JComboBox[3];
 	static JSpinner spinner_1 = new JSpinner();
     static JTextField[] textFields = new JTextField[5];
-    //WindowListener winListener = new TestWindowListener();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,7 +64,6 @@ public class Frame1 {
 		frame.setBounds(100, 100, 500, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		//frame.addWindowListener(winListener);
 		
 		String[] label_name = {"Высота", "Ширина", "Глубина цвета", "FPS", "Формат", "Развёртка", "Количество камер", "Часов в день", "Количество дней"};
 		JLabel[] labels = new JLabel[9];
@@ -89,7 +85,7 @@ public class Frame1 {
         	textFields[i].setBounds(250, y_position_fields[i], 225, 25);
         	frame.getContentPane().add(textFields[i]);
         	textFields[i].setColumns(10);
-        	check_enter(i);
+        	check_wrong_enter(i);
         }
    
         double[] form_value = {0.769, 0.37, 0.333, 0.222, 0.149, 0.133, 0.132, 0.116, 0.11, 0.1, 0.065, 0.065, 0.047, 0.043, 0.04};
@@ -159,7 +155,7 @@ public class Frame1 {
 			}
 		});
 	};
-	public void check_enter(int position) {
+	public void check_wrong_enter(int position) {
 		textFields[position].addKeyListener(new KeyAdapter() {
 			   public void keyTyped(KeyEvent e) {
 			      char c = e.getKeyChar();
@@ -168,18 +164,8 @@ public class Frame1 {
 			      }
 			   }
 			});
-		textFields[position].addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-					try {	
-						Integer.parseInt(textFields[position].getText().toString());
-						} catch (NumberFormatException exception) {
-							JOptionPane.showMessageDialog(frame, "Пустое поле: Пожалуйста, вернитесь и введите значение", "Ошибка", JOptionPane.ERROR_MESSAGE);
-							textFields[position].requestFocus();
-						}					
- 					}
-			});
-		}
-	
+	}
+			
 	public class Item {		
 		double value;
 		String Name;
@@ -209,15 +195,22 @@ public class Frame1 {
 	}
 	
 	public void print_answer() {
-		h = Integer.parseInt(textFields[0].getText());
-		w = Integer.parseInt(textFields[1].getText());
-		deep = ((Item) ComboBoxes[0].getSelectedItem()).getvalue();
-		fps = Integer.parseInt(textFields[2].getText());
-		hours = (Integer) spinner_1.getValue();
-		form = ((Item) ComboBoxes[1].getSelectedItem()).getvalue();
-		razv = ((Item) ComboBoxes[2].getSelectedItem()).getvalue();
-		cam = Integer.parseInt(textFields[3].getText());
-		days = Integer.parseInt(textFields[4].getText());
+		try {
+			h = Integer.parseInt(textFields[0].getText());
+			w = Integer.parseInt(textFields[1].getText());
+			fps = Integer.parseInt(textFields[2].getText());
+			cam = Integer.parseInt(textFields[3].getText());
+			days = Integer.parseInt(textFields[4].getText());
+			hours = (Integer) spinner_1.getValue();
+			deep = ((Item) ComboBoxes[0].getSelectedItem()).getvalue();
+			form = ((Item) ComboBoxes[1].getSelectedItem()).getvalue();
+			razv = ((Item) ComboBoxes[2].getSelectedItem()).getvalue();
+			} catch (NumberFormatException exception) {
+			JOptionPane.showMessageDialog(frame, "Одно или несколько полей пусты: Пожалуйста, вернитесь и введите значение", "Ошибка", JOptionPane.ERROR_MESSAGE);
+		//	textFields[position].requestFocus();
+			return;
+			}					
+
 		double form_answer = end_calc(h,w,deep,fps,form,razv,cam,hours,days);
 		int[] del = {8, 1024, 1024, 1024, 1024};
 		String[] name = {"B", "KB", "MB", "GB", "TB"};

@@ -17,7 +17,7 @@ public class test_end_calc {
 	public test_end_calc(int h, int w, double deep, int fps, double form, double razv, int cam, int hours, int days, double expected_answer) {
 		this.h = h;
 		this.w = w;
-		this.deep = deep; // dark  //  // fantasy //
+		this.deep = deep;
 		this.fps = fps;
 		this.form = form;
 		this.razv = razv;
