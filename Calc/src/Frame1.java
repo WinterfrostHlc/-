@@ -207,9 +207,8 @@ public class Frame1 {
 			razv = ((Item) ComboBoxes[2].getSelectedItem()).getvalue();
 			} catch (NumberFormatException exception) {
 			JOptionPane.showMessageDialog(frame, "Одно или несколько полей пусты: Пожалуйста, вернитесь и введите значение", "Ошибка", JOptionPane.ERROR_MESSAGE);
-		//	textFields[position].requestFocus();
 			return;
-			}					
+		}					
 
 		double form_answer = end_calc(h,w,deep,fps,form,razv,cam,hours,days);
 		int[] del = {8, 1024, 1024, 1024, 1024};
