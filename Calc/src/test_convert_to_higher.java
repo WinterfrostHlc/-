@@ -11,7 +11,9 @@ import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
 public class test_convert_to_higher {
-	//инициируем переменные
+
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
 	double x, expected_answer;
 	int y;
 	
@@ -20,7 +22,9 @@ public class test_convert_to_higher {
 		this.y = y;
 		this.expected_answer = expected_answer;
 	}
-	//инируем параметры
+
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
 	@Parameterized.Parameters
 	public static Collection<Object[]> numbers(){
 		return Arrays.asList(new Object[][]{
@@ -29,8 +33,10 @@ public class test_convert_to_higher {
 				{781353216000D,8,97669152000D}}
 		);
 	}
+
 	
-	//проверяем соответствие полученных и ожидаемых результатов
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
 	@Test
 	public final void testconvert_to_higher() {
 		double delta = 0.00001;
