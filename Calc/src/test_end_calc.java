@@ -11,6 +11,9 @@ import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
 public class test_end_calc {
+
+	//���������� ����������
+
 	int h,w,fps,hours,cam,days;
 	double deep,form,razv,expected_answer;
 	
@@ -26,7 +29,9 @@ public class test_end_calc {
 		this.days = days;
 		this.expected_answer = expected_answer;
 	}
-	
+
+	//������� ���������
+
 	@Parameterized.Parameters
 	public static Collection<Object[]> numbers(){
 		return Arrays.asList(new Object[][]{
@@ -35,6 +40,9 @@ public class test_end_calc {
 				{320,240,8,6,0.043,1,1,6,7,23967498240D}});
 	}
 	
+
+	//��������� ������������ ���������� � ��������� �����������
+
 	@Test
 	public final void testEnd_calc() {
 		double delta = 0.0001;
