@@ -43,5 +43,4 @@ public class test_end_calc {
 		double actual_answer = Frame1.end_calc(h,w,deep,fps,form,razv,cam,hours,days);
 		assertEquals(actual_answer,expected_answer,delta);
 	}
-
 }
